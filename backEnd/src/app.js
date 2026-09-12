@@ -34,7 +34,12 @@ app.use("/api/payments", paymentRoutes);
 
 // Test route
 app.get("/", (req, res) => {
-  console.log("ROOT REQUEST RECEIVED", req.headers["cf-ray"]);
+console.log(
+  "ROOT REQUEST RECEIVED",
+  req.method,
+  req.originalUrl,
+  new Date().toISOString()
+);
 
   res.json({
     message: "Velvora Backend API is running",
