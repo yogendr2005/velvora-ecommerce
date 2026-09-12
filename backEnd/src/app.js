@@ -13,14 +13,13 @@ import paymentRoutes from "./routes/paymentRoutes.js";
 
 const app = express();
 
-// Middleware
 app.use(
   cors({
     origin: "http://localhost:5173",
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
+
+app.use(express.json());
 app.use(express.json());
 
 // Routes
