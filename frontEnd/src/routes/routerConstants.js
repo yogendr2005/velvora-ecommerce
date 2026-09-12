@@ -32,4 +32,6 @@ export const ROUTES = {
   WISHLIST: "/wishlist",
 
   CONTACT: "/contact",
+
+  ADMIN_ORDERS: "/admin/orders",
 };

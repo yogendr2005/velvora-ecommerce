@@ -59,6 +59,7 @@ export const createOrder = async (req, res) => {
       orderItems,
       shippingAddress,
       paymentMethod,
+      paymentStatus: paymentMethod === "COD" ? "Pending" : "Paid",
       razorpayOrderId,
       razorpayPaymentId,
       totalPrice
@@ -92,6 +93,72 @@ export const getMyOrders = async (req, res) => {
     res.status(200).json({
       count: orders.length,
       orders
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: "Something went wrong",
+      error: error.message
+    });
+  }
+};
+
+// Get all orders - Admin
+export const getAllOrders = async (req, res) => {
+  try {
+    const orders = await Order.find({})
+      .populate("user", "name email")
+      .populate("orderItems.product")
+      .sort({ createdAt: -1 });
+
+    res.status(200).json({
+      count: orders.length,
+      orders
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: "Something went wrong",
+      error: error.message
+    });
+  }
+};
+
+// Update order status - Admin
+export const updateOrderStatus = async (req, res) => {
+  try {
+    const { orderStatus } = req.body;
+
+    const allowedStatuses = [
+      "Pending",
+      "Processing",
+      "Shipped",
+      "Delivered",
+      "Cancelled"
+    ];
+
+    if (!allowedStatuses.includes(orderStatus)) {
+      return res.status(400).json({
+        message: "Invalid order status"
+      });
+    }
+
+    const order = await Order.findById(req.params.id);
+
+    if (!order) {
+      return res.status(404).json({
+        message: "Order not found"
+      });
+    }
+
+    order.orderStatus = orderStatus;
+
+    await order.save();
+
+    await order.populate("user", "name email");
+    await order.populate("orderItems.product");
+
+    res.status(200).json({
+      message: "Order status updated successfully",
+      order
     });
   } catch (error) {
     res.status(500).json({

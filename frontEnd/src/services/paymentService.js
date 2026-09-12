@@ -1,13 +1,12 @@
 const API_URL = "http://localhost:5000/api/payments";
 
-export const createPaymentOrder = async (amount, token) => {
+export const createPaymentOrder = async (token) => {
   const response = await fetch(`${API_URL}/create-order`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`
-    },
-    body: JSON.stringify({ amount })
+    }
   });
 
   const data = await response.json();

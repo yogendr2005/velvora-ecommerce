@@ -110,205 +110,215 @@ const Profile = () => {
     );
   }
 
-return (
-  <div className="profile-page">
-    <div className="profile-card">
+  return (
+    <div className="profile-page">
+      <div className="profile-card">
 
-      {/* ===========================
+        {/* ===========================
           PROFILE HEADER
       =========================== */}
 
-      <div className="profile-header">
-        <div className="profile-avatar">
-          <FaUser />
+        <div className="profile-header">
+          <div className="profile-avatar">
+            <FaUser />
+          </div>
+
+          <h1>{user?.name}</h1>
+
+          <p>{user?.email}</p>
         </div>
 
-        <h1>{user?.name}</h1>
-
-        <p>{user?.email}</p>
-      </div>
-
-      {/* ===========================
+        {/* ===========================
           ACCOUNT INFORMATION
       =========================== */}
 
-      <div className="profile-details">
-        <h2>Account Information</h2>
+        <div className="profile-details">
+          <h2>Account Information</h2>
 
-        <div className="profile-detail">
-          <FaUser />
+          <div className="profile-detail">
+            <FaUser />
 
-          <div>
-            <span>Name</span>
+            <div>
+              <span>Name</span>
 
-            <strong>
-              {user?.name}
-            </strong>
+              <strong>
+                {user?.name}
+              </strong>
+            </div>
+          </div>
+
+          <div className="profile-detail">
+            <FaEnvelope />
+
+            <div>
+              <span>Email</span>
+
+              <strong>
+                {user?.email}
+              </strong>
+            </div>
           </div>
         </div>
 
-        <div className="profile-detail">
-          <FaEnvelope />
-
-          <div>
-            <span>Email</span>
-
-            <strong>
-              {user?.email}
-            </strong>
-          </div>
-        </div>
-      </div>
-
-      {/* ===========================
+        {/* ===========================
           MY ORDERS
       =========================== */}
 
-      <div className="profile-orders">
+        <div className="profile-orders">
 
-        <div className="profile-orders-header">
-          <h2>My Orders</h2>
+          <div className="profile-orders-header">
+            <h2>My Orders</h2>
 
-          <span>
-            {orders.length}{" "}
-            {orders.length === 1
-              ? "Order"
-              : "Orders"}
-          </span>
-        </div>
-
-        {orders.length === 0 ? (
-          <div className="no-orders">
-            <p>
-              You haven't placed any orders yet.
-            </p>
+            <span>
+              {orders.length}{" "}
+              {orders.length === 1
+                ? "Order"
+                : "Orders"}
+            </span>
           </div>
-        ) : (
-          <div className="orders-list">
 
-            {orders.map((order) => (
-              <div
-                key={order._id}
-                className="order-card"
-              >
+          {orders.length === 0 ? (
+            <div className="no-orders">
+              <p>
+                You haven't placed any orders yet.
+              </p>
+            </div>
+          ) : (
+            <div className="orders-list">
 
-                {/* ORDER HEADER */}
+              {orders.map((order) => (
+                <div
+                  key={order._id}
+                  className="order-card"
+                >
 
-                <div className="order-header">
+                  {/* ORDER HEADER */}
 
-                  <div>
-                    <span>Order ID</span>
+                  <div className="order-header">
 
-                    <strong>
-                      #{order._id}
-                    </strong>
+                    <div>
+                      <span>Order ID</span>
+
+                      <strong>
+                        #{order._id}
+                      </strong>
+                    </div>
+
+<div>
+  <span>Payment</span>
+  <strong
+    className={`order-status payment-status-${order.paymentStatus.toLowerCase()}`}
+  >
+    {order.paymentStatus}
+  </strong>
+</div>
+
+<div>
+  <span>Status</span>
+  <strong
+    className={`order-status order-status-${order.orderStatus.toLowerCase()}`}
+  >
+    {order.orderStatus}
+  </strong>
+</div>
+
                   </div>
 
-                  <div>
-                    <span>Status</span>
+                  {/* ORDER ITEMS */}
 
-                    <strong className="order-status">
-                      {order.orderStatus}
-                    </strong>
-                  </div>
+                  <div className="order-items">
 
-                </div>
+                    {order.orderItems.map(
+                      (item) => (
+                        <div
+                          key={item.product._id}
+                          className="order-item"
+                        >
 
-                {/* ORDER ITEMS */}
-
-                <div className="order-items">
-
-                  {order.orderItems.map(
-                    (item) => (
-                      <div
-                        key={item.product._id}
-                        className="order-item"
-                      >
-
-                        <img
-                          src={
-                            item.product.image
-                          }
-                          alt={
-                            item.product.name
-                          }
-                        />
-
-                        <div className="order-item-details">
-
-                          <h3>
-                            {
+                          <img
+                            src={
+                              item.product.image
+                            }
+                            alt={
                               item.product.name
                             }
-                          </h3>
+                          />
 
-                          <p>
-                            Quantity:{" "}
-                            {item.quantity}
-                          </p>
+                          <div className="order-item-details">
+
+                            <h3>
+                              {
+                                item.product.name
+                              }
+                            </h3>
+
+                            <p>
+                              Quantity:{" "}
+                              {item.quantity}
+                            </p>
+
+                          </div>
+
+                          <strong>
+                            ₹
+                            {(
+                              item.price *
+                              item.quantity
+                            ).toLocaleString(
+                              "en-IN"
+                            )}
+                          </strong>
 
                         </div>
+                      )
+                    )}
 
-                        <strong>
-                          ₹
-                          {(
-                            item.price *
-                            item.quantity
-                          ).toLocaleString(
-                            "en-IN"
-                          )}
-                        </strong>
+                  </div>
 
-                      </div>
-                    )
-                  )}
+                  {/* ORDER FOOTER */}
+
+                  <div className="order-footer">
+
+                    <span>
+                      {new Date(
+                        order.createdAt
+                      ).toLocaleDateString(
+                        "en-IN"
+                      )}
+                    </span>
+
+                    <strong>
+                      Total: ₹
+                      {order.totalPrice.toLocaleString(
+                        "en-IN"
+                      )}
+                    </strong>
+
+                  </div>
 
                 </div>
+              ))}
 
-                {/* ORDER FOOTER */}
+            </div>
+          )}
 
-                <div className="order-footer">
+        </div>
 
-                  <span>
-                    {new Date(
-                      order.createdAt
-                    ).toLocaleDateString(
-                      "en-IN"
-                    )}
-                  </span>
-
-                  <strong>
-                    Total: ₹
-                    {order.totalPrice.toLocaleString(
-                      "en-IN"
-                    )}
-                  </strong>
-
-                </div>
-
-              </div>
-            ))}
-
-          </div>
-        )}
-
-      </div>
-
-      {/* ===========================
+        {/* ===========================
           LOGOUT
       =========================== */}
 
-      <button
-        className="profile-logout-btn"
-        onClick={handleLogout}
-      >
-        <FaSignOutAlt />
-        Logout
-      </button>
+        <button
+          className="profile-logout-btn"
+          onClick={handleLogout}
+        >
+          <FaSignOutAlt />
+          Logout
+        </button>
 
+      </div>
     </div>
-  </div>
-);
+  );
 };
 
 export default Profile;

@@ -18,7 +18,9 @@ import Support from "../pages/Support";
 
 import { ROUTES } from "./routerConstants";
 import ProtectedRoute from "./ProtectedRoute";
+import AdminRoute from "./AdminRoute";
 import Contact from "../pages/Contact";
+import AdminOrders from "../pages/AdminOrders";
 
 const router = createBrowserRouter([
   {
@@ -54,6 +56,15 @@ const router = createBrowserRouter([
           {
             path: ROUTES.PROFILE,
             element: <Profile />,
+          },
+          {
+            element: <AdminRoute />,
+            children: [
+              {
+                path: ROUTES.ADMIN_ORDERS,
+                element: <AdminOrders />
+              }
+            ]
           },
           {
             path: ROUTES.SUPPORT,

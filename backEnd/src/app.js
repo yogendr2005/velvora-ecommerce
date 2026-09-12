@@ -27,14 +27,15 @@ app.use("/api/users", userRoutes);
 app.use("/api/wishlist", wishlistRoutes);
 app.use("/api/payments", paymentRoutes);
 
-app.use(notFoundMiddleware);
-app.use(errorMiddleware);
-
 // Test route
 app.get("/", (req, res) => {
   res.json({
     message: "Velvora Backend API is running"
   });
 });
+
+app.use(notFoundMiddleware);
+app.use(errorMiddleware);
+
 
 export default app;

@@ -113,7 +113,6 @@ const Checkout = () => {
 
       // CARD / UPI
       const data = await createPaymentOrder(
-        totalPrice,
         token
       );
 
@@ -156,6 +155,10 @@ const Checkout = () => {
           } finally {
             setLoading(false);
           }
+        },
+
+        ondismiss: function () {
+          toast.info("Payment cancelled");
         },
 
         prefill: {

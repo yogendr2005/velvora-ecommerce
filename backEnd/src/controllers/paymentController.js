@@ -1,19 +1,34 @@
 import razorpay from "../utils/razorpay.js";
 import crypto from "crypto";
 import { createOrder } from "./orderController.js";
+import Cart from "../models/Cart.js";
 
 export const createPaymentOrder = async (req, res) => {
   try {
-    const { amount } = req.body;
+    const cart = await Cart.findOne({
+      user: req.user._id
+    }).populate("items.product");
 
-    if (!amount || amount <= 0) {
+    if (!cart || cart.items.length === 0) {
+      return res.status(400).json({
+        message: "Cart is empty"
+      });
+    }
+
+    const totalPrice = cart.items.reduce(
+      (total, item) =>
+        total + item.product.price * item.quantity,
+      0
+    );
+
+    if (totalPrice <= 0) {
       return res.status(400).json({
         message: "Invalid payment amount"
       });
     }
 
     const options = {
-      amount: Math.round(amount * 100),
+      amount: Math.round(totalPrice * 100),
       currency: "INR",
       receipt: `receipt_${Date.now()}`
     };
@@ -53,6 +68,40 @@ export const verifyPayment = async (req, res) => {
     if (generatedSignature !== razorpay_signature) {
       return res.status(400).json({
         message: "Payment verification failed"
+      });
+    }
+
+    const razorpayOrder = await razorpay.orders.fetch(
+      razorpay_order_id
+    );
+
+    if (!razorpayOrder) {
+      return res.status(400).json({
+        message: "Razorpay order not found"
+      });
+    }
+
+    const cart = await Cart.findOne({
+      user: req.user._id
+    }).populate("items.product");
+
+    if (!cart || cart.items.length === 0) {
+      return res.status(400).json({
+        message: "Cart is empty"
+      });
+    }
+
+    const totalPrice = cart.items.reduce(
+      (total, item) =>
+        total + item.product.price * item.quantity,
+      0
+    );
+
+    const expectedAmount = Math.round(totalPrice * 100);
+
+    if (razorpayOrder.amount !== expectedAmount) {
+      return res.status(400).json({
+        message: "Payment amount does not match order amount"
       });
     }
 

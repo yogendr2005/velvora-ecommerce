@@ -2478,3 +2478,271 @@ body,
     font-size: 12px;
     color: #777;
 }
+
+.admin-orders-page {
+  padding: 40px 80px;
+  min-height: 70vh;
+  background: #f8f8f8;
+}
+
+.admin-orders-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.admin-orders-header {
+  margin-bottom: 30px;
+}
+
+.admin-orders-header h1 {
+  margin: 0 0 8px;
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.admin-orders-count {
+  color: #666;
+  font-size: 15px;
+}
+
+/* Order Card */
+
+.admin-order-card {
+  background: #fff;
+  border: 1px solid #e5e5e5;
+  border-radius: 12px;
+  margin-bottom: 24px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+/* Order Header */
+
+.admin-order-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px;
+  border-bottom: 1px solid #eee;
+}
+
+.admin-order-id {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.admin-order-date {
+  color: #777;
+  font-size: 13px;
+  margin-top: 5px;
+}
+
+/* Order Content */
+
+.admin-order-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  padding: 24px;
+}
+
+.admin-order-section h3 {
+  margin: 0 0 14px;
+  font-size: 16px;
+}
+
+.admin-order-section p {
+  margin: 7px 0;
+  color: #555;
+  font-size: 14px;
+}
+
+.admin-order-section strong {
+  color: #222;
+}
+
+/* Payment */
+
+.admin-payment-status {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  background: #e8f7ee;
+  color: #16803c;
+}
+
+/* Order Status */
+
+.admin-status-control {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.admin-status-control label {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.admin-status-control select {
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background: #fff;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+/* Products */
+
+.admin-order-items {
+  padding: 0 24px 24px;
+}
+
+.admin-order-items h3 {
+  font-size: 16px;
+  margin-bottom: 14px;
+}
+
+.admin-order-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 12px 0;
+  border-top: 1px solid #eee;
+}
+
+.admin-order-item img {
+  width: 65px;
+  height: 65px;
+  object-fit: cover;
+  border-radius: 8px;
+  background: #f5f5f5;
+}
+
+.admin-order-item-details {
+  flex: 1;
+}
+
+.admin-order-item-details h4 {
+  margin: 0 0 5px;
+  font-size: 14px;
+}
+
+.admin-order-item-details p {
+  margin: 0;
+  color: #777;
+  font-size: 13px;
+}
+
+.admin-order-item-price {
+  font-weight: 600;
+}
+
+/* Footer */
+
+.admin-order-footer {
+  display: flex;
+  justify-content: flex-end;
+  padding: 18px 24px;
+  border-top: 1px solid #eee;
+  background: #fafafa;
+}
+
+.admin-order-total {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+/* Loading / Error */
+
+.admin-orders-message {
+  text-align: center;
+  padding: 60px 20px;
+  font-size: 16px;
+  color: #666;
+}
+
+/* Responsive */
+
+@media (max-width: 768px) {
+  .admin-orders-page {
+    padding: 25px 20px;
+  }
+
+  .admin-order-content {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .admin-order-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+}
+
+/* ===========================
+   ORDER STATUS BADGES
+=========================== */
+
+.order-status {
+  display: inline-block;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1;
+}
+
+/* Payment Status */
+
+.payment-status-paid {
+  background: #e8f7ee;
+  color: #16803c;
+}
+
+.payment-status-pending {
+  background: #fff4d6;
+  color: #9a6700;
+}
+
+.payment-status-failed {
+  background: #fde8e8;
+  color: #c53030;
+}
+
+.payment-status-refunded {
+  background: #e8e8f7;
+  color: #5b5bb2;
+}
+
+/* Order Status */
+
+.order-status-pending {
+  background: #fff4d6;
+  color: #9a6700;
+}
+
+.order-status-processing {
+  background: #e6f0ff;
+  color: #2563a8;
+}
+
+.order-status-shipped {
+  background: #eee8ff;
+  color: #6b46c1;
+}
+
+.order-status-delivered {
+  background: #e8f7ee;
+  color: #16803c;
+}
+
+.order-status-cancelled {
+  background: #fde8e8;
+  color: #c53030;
+}
