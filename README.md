@@ -1,15 +1,44 @@
-# Velvora
+# Velvora - Full-Stack Ecommerce App
 
-Velvora is a full-stack ecommerce web application built with React, Node.js, Express, MongoDB, and Razorpay.
+A full-stack ecommerce application built with **React, Node.js, Express, MongoDB and Razorpay**.
 
-The project includes product browsing, authentication, cart management, wishlist, checkout, orders, stock management, and Razorpay payment integration.
+🌐 **Live Demo:** https://velvoraecommerce.netlify.app  
+⚙️ **Backend API:** https://velvora-ecommerce-1.onrender.com  
+💻 **GitHub:** https://github.com/yogendr2005/velvora-ecommerce
 
-## Features
+> The backend is deployed on Render's free tier and may take a few seconds to wake up when it receives its first request.
+
+---
+
+## 📸 Screenshots
+
+### Home
+
+![Velvora Home](screenshots/home.png)
+
+### Product Details
+
+![Velvora Product Details](screenshots/product-details.png)
+
+### Shopping Cart
+
+![Velvora Shopping Cart](screenshots/cart.png)
+
+### Checkout
+
+![Velvora Checkout](screenshots/checkout.png)
+
+> Screenshots are stored in the `screenshots/` directory.
+
+---
+
+## ✨ Features
 
 ### Frontend
 
 - User registration and login
 - JWT-based authentication
+- Current user authentication
 - Product listing
 - Product search
 - Category filtering
@@ -28,48 +57,41 @@ The project includes product browsing, authentication, cart management, wishlist
 
 ### Backend
 
-- RESTful APIs
-- Express.js server
+- RESTful APIs with Express.js
 - MongoDB with Mongoose
 - JWT authentication
 - Password hashing with bcrypt
 - Product CRUD operations
-- Category APIs
-- Cart APIs
-- Wishlist APIs
-- Order APIs
-- User APIs
+- Category management
+- Cart management
+- Wishlist management
+- Order management
+- User profile management
 - Razorpay payment integration
 - Razorpay payment signature verification
 - Product stock management
-- Error handling middleware
+- Centralized error handling
 - 404 handling middleware
 
-## Tech Stack
+---
 
-### Frontend
+## 🛠️ Tech Stack
 
-- React
-- Vite
-- Redux Toolkit
-- React Router
-- React Toastify
-- React Icons
+| Layer | Technologies |
+|---|---|
+| Frontend | React, Vite, Redux Toolkit, React Router, React Toastify, React Icons |
+| Backend | Node.js, Express.js, MongoDB, Mongoose, JWT, bcrypt, Razorpay |
+| Database | MongoDB |
+| Payments | Razorpay |
+| Frontend Deployment | Netlify |
+| Backend Deployment | Render |
 
-### Backend
+---
 
-- Node.js
-- Express.js
-- MongoDB
-- Mongoose
-- JWT
-- bcrypt
-- Razorpay
-
-## Project Structure
+## 📁 Project Structure
 
 ```text
-Ecommerce/
+velvora-ecommerce/
 │
 ├── backEnd/
 │   ├── src/
@@ -98,6 +120,12 @@ Ecommerce/
 │   ├── .env.example
 │   ├── package.json
 │   └── index.html
+│
+├── screenshots/
+│   ├── home.png
+│   ├── product-details.png
+│   ├── cart.png
+│   └── checkout.png
 │
 ├── .gitignore
 └── README.md
