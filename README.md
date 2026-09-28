@@ -28,7 +28,23 @@ A full-stack ecommerce application built with **React, Node.js, Express, MongoDB
 
 ![Velvora Checkout](screenshots/checkout.png)
 
-> Screenshots are stored in the `screenshots/` directory.
+---
+
+## 🔑 Demo Credentials
+
+Use this account to explore the app without signing up:
+
+| Field | Value |
+|---|---|
+| Email | `Yogesh@gmail.com` |
+| Password | `Admin@123` |
+
+**Razorpay test mode (no real money is charged):**
+
+| Method | Details |
+|---|---|
+| Card | `4111 1111 1111 1111`, any future expiry, any CVV |
+| UPI | `success@razorpay` |
 
 ---
 
@@ -129,3 +145,81 @@ velvora-ecommerce/
 │
 ├── .gitignore
 └── README.md
+```
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js 18 or higher
+- A MongoDB database (local or MongoDB Atlas)
+- Razorpay test API keys (from the Razorpay dashboard)
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/yogendr2005/velvora-ecommerce.git
+cd velvora-ecommerce
+```
+
+### 2. Set up the backend
+
+```bash
+cd backEnd
+npm install
+```
+
+Create a `.env` file by copying `.env.example` and fill in your own values (MongoDB connection string, JWT secret, Razorpay keys):
+
+```bash
+cp .env.example .env
+```
+
+Start the server:
+
+```bash
+npm run dev
+```
+
+To load sample products, run the seed script defined in `backEnd/package.json`.
+
+### 3. Set up the frontend
+
+Open a new terminal:
+
+```bash
+cd frontEnd
+npm install
+cp .env.example .env
+npm run dev
+```
+
+Set the API URL in the frontend `.env` to your backend (for local development, usually `http://localhost:5000`). The app runs at `http://localhost:5173`.
+
+---
+
+## 🧠 Key Design Decisions
+
+- **Payment security:** Razorpay signatures are verified on the server, so a client cannot fake a successful payment.
+- **State management:** Redux Toolkit manages auth, cart, and wishlist state shared across many pages.
+- **Separation of concerns:** Controllers, routes, middleware, and models are separated in the backend for maintainability.
+- **Stock consistency:** Product stock is updated when an order is placed, which prevents overselling.
+
+---
+
+## 🗺️ Roadmap
+
+- [ ] Admin dashboard with role-based access control
+- [ ] Backend pagination for product listing
+- [ ] Image uploads with Cloudinary
+- [ ] API tests with Jest and Supertest
+- [ ] Migrate to TypeScript
+
+---
+
+## 👨‍💻 Author
+
+**Yogendra Vadhavana**  
+GitHub: [@yogendr2005](https://github.com/yogendr2005)
