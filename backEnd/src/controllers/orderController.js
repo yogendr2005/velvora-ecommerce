@@ -2,15 +2,15 @@ import Order from "../models/Order.js";
 import Cart from "../models/Cart.js";
 import Product from "../models/Product.js";
 
-// Place order
-export const createOrder = async (req, res) => {
+// Internal helper. NOT used as a route directly.
+// Called by createOrder (COD) and by verifyPayment (after signature check).
+export const placeOrder = async (
+  req,
+  res,
+  { paymentMethod, razorpayOrderId, razorpayPaymentId }
+) => {
   try {
-    const {
-      shippingAddress,
-      paymentMethod,
-      razorpayOrderId,
-      razorpayPaymentId
-    } = req.body;
+    const { shippingAddress } = req.body;
 
     // Find user's cart
     const cart = await Cart.findOne({
@@ -80,6 +80,11 @@ export const createOrder = async (req, res) => {
     });
   }
 };
+
+// Place order: Cash on Delivery only.
+// The server decides the payment method, never the client.
+export const createOrder = (req, res) =>
+  placeOrder(req, res, { paymentMethod: "COD" });
 
 // Get logged-in user's orders
 export const getMyOrders = async (req, res) => {
