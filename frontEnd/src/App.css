@@ -441,6 +441,7 @@ body,
 }
 
 .product-card {
+  position: relative;
   background: #fff;
   border-radius: 20px;
   overflow: hidden;
@@ -3318,4 +3319,10 @@ body,
   align-items: center;
   gap: 16px;
   margin-top: 24px;
+}
+
+@media (hover: hover) {
+  .product-card:hover {
+    transform: translateY(-8px);
+  }
 }
