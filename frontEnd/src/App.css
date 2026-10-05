@@ -235,7 +235,8 @@ body,
 
 .footer-container {
   max-width: 1400px;
-  width: calc(100% - 40px);
+  width: 100%;
+  margin: 0 auto;
   padding: 60px 80px;
   display: flex;
   justify-content: space-between;
@@ -3072,12 +3073,13 @@ body,
             FOOTER
     =========================== */
 
-    .footer-container {
-        width: calc(100% - 30px);
-        padding: 40px 0;
-        flex-direction: column;
-        gap: 35px;
-    }
+.footer-container {
+    width: 100%;
+    margin: 0 auto;
+    padding: 40px 20px;
+    flex-direction: column;
+    gap: 35px;
+}
 
     .footer-brand {
         max-width: 100%;
