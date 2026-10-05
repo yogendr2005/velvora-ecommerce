@@ -21,6 +21,7 @@ import ProtectedRoute from "./ProtectedRoute";
 import AdminRoute from "./AdminRoute";
 import Contact from "../pages/Contact";
 import AdminOrders from "../pages/AdminOrders";
+import AdminActivity from "../pages/AdminActivity";
 
 const router = createBrowserRouter([
   {
@@ -63,6 +64,10 @@ const router = createBrowserRouter([
               {
                 path: ROUTES.ADMIN_ORDERS,
                 element: <AdminOrders />
+              },
+                            {
+                path: ROUTES.ADMIN_ACTIVITY,
+                element: <AdminActivity  />
               }
             ]
           },

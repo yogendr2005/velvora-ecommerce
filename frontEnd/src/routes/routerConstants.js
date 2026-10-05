@@ -34,4 +34,6 @@ export const ROUTES = {
   CONTACT: "/contact",
 
   ADMIN_ORDERS: "/admin/orders",
+
+  ADMIN_ACTIVITY: "/admin/activity"
 };

@@ -1,6 +1,7 @@
 import bcrypt from "bcrypt";
 import User from "../models/User.js";
 import generateToken from "../utils/generateToken.js";
+import logActivity from "../utils/logActivity.js";
 
 export const registerUser = async (req, res) => {
   try {
@@ -34,6 +35,12 @@ export const registerUser = async (req, res) => {
 
     // Generate JWT token
     const token = generateToken(user._id);
+
+    logActivity(req, {
+      action: "register",
+      user: user._id,
+      email: user.email
+    });
 
     // Send response
     res.status(201).json({
@@ -75,6 +82,8 @@ export const loginUser = async (req, res) => {
     const user = await User.findOne({ email });
 
     if (!user) {
+      logActivity(req, { action: "login_failed", email });
+
       return res.status(401).json({
         message: "Invalid email or password"
       });
@@ -87,6 +96,12 @@ export const loginUser = async (req, res) => {
     );
 
     if (!isPasswordMatched) {
+      logActivity(req, {
+        action: "login_failed",
+        user: user._id,
+        email: user.email
+      });
+
       return res.status(401).json({
         message: "Invalid email or password"
       });
@@ -94,6 +109,12 @@ export const loginUser = async (req, res) => {
 
     // Generate JWT token
     const token = generateToken(user._id);
+
+    logActivity(req, {
+      action: "login",
+      user: user._id,
+      email: user.email
+    });
 
     res.status(200).json({
       message: "Login successful",

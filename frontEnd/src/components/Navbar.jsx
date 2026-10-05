@@ -23,6 +23,7 @@ import { ROUTES } from "../routes/routerConstants";
 import { logout } from "../store/slices/authSlice";
 
 const Navbar = () => {
+  const isAdmin = useSelector((state) => state.auth.user?.role === "admin");
   const navigate = useNavigate();
   const location = useLocation();
   const dispatch = useDispatch();
@@ -239,6 +240,8 @@ const Navbar = () => {
         >
           Support
         </Link>
+
+        {isAdmin && <Link to={ROUTES.ADMIN_ACTIVITY}>Activity</Link>}
 
       </nav>
 
